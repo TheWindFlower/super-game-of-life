@@ -7,7 +7,7 @@
 #include <string>
 #include <sstream>
 #include <future>
-#include "include/util.hpp"
+#include "include/utils.hpp"
 
 using std::tuple;
 using std::vector;
@@ -23,19 +23,28 @@ int COLUMNS = SCREEN_WIDTH / GRID_SIZE;
 class render
 {
 private:
-    void draw_cells(SDL_Renderer *renderer, vector<tuple<int, int, bool>> cells, int rows, int columns)
+    void draw_cells(SDL_Renderer *renderer, vector<tuple<int, int, bool, int>> cells, int rows, int columns)
     {
-        int x, y;
+        int x, y, cell_kind;
         bool status;
         for (const auto &t : cells)
         {
             x = std::get<0>(t);
             y = std::get<1>(t);
             status = std::get<2>(t);
+            cell_kind = std::get<3>(t);
+
             SDL_Rect rect = {x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE};
             if (status)
             {
-                SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+                if (cell_kind == 1)
+                {
+                    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+                }
+                else
+                {
+                    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+                }
             }
             else
             {
@@ -80,7 +89,7 @@ public:
         // Clear screen
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
-        vector<tuple<int, int, bool>> cells_status = start("data/board.brd", ROWS, COLUMNS); // load initale game stat
+        vector<tuple<int, int, bool, int>> cells_status = start("data/board.brd", ROWS, COLUMNS); // load initale game stat
 
         // Wait for user to quit
         bool quit = false;
@@ -89,7 +98,7 @@ public:
         // main loop
         while (!quit)
         {
-            auto start = std::chrono::high_resolution_clock::now();
+            auto start_chrono = std::chrono::high_resolution_clock::now();
 
             // Draw grid
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -124,8 +133,8 @@ public:
                     quit = true;
                 }
             }
-            auto end = std::chrono::high_resolution_clock::now();
-            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+            auto end_chrono = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end_chrono - start_chrono);
             std::cout << "Frame render time: " << duration.count() << " microseconds." << std::endl;
         }
 

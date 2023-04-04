@@ -5,7 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/rflower/Documents/dev/super-game-of-life/main.cpp" "/home/rflower/Documents/dev/super-game-of-life/CMakeFiles/app.dir/main.cpp.o"
-  "/home/rflower/Documents/dev/super-game-of-life/src/util.cpp" "/home/rflower/Documents/dev/super-game-of-life/CMakeFiles/app.dir/src/util.cpp.o"
+  "/home/rflower/Documents/dev/super-game-of-life/src/utils.cpp" "/home/rflower/Documents/dev/super-game-of-life/CMakeFiles/app.dir/src/utils.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

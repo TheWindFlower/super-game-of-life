@@ -76,18 +76,18 @@ include CMakeFiles/app.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/app.dir/flags.make
 
-CMakeFiles/app.dir/src/util.cpp.o: CMakeFiles/app.dir/flags.make
-CMakeFiles/app.dir/src/util.cpp.o: src/util.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rflower/Documents/dev/super-game-of-life/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/app.dir/src/util.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/src/util.cpp.o -c /home/rflower/Documents/dev/super-game-of-life/src/util.cpp
+CMakeFiles/app.dir/src/utils.cpp.o: CMakeFiles/app.dir/flags.make
+CMakeFiles/app.dir/src/utils.cpp.o: src/utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rflower/Documents/dev/super-game-of-life/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/app.dir/src/utils.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/app.dir/src/utils.cpp.o -c /home/rflower/Documents/dev/super-game-of-life/src/utils.cpp
 
-CMakeFiles/app.dir/src/util.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/src/util.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rflower/Documents/dev/super-game-of-life/src/util.cpp > CMakeFiles/app.dir/src/util.cpp.i
+CMakeFiles/app.dir/src/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/app.dir/src/utils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rflower/Documents/dev/super-game-of-life/src/utils.cpp > CMakeFiles/app.dir/src/utils.cpp.i
 
-CMakeFiles/app.dir/src/util.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/src/util.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rflower/Documents/dev/super-game-of-life/src/util.cpp -o CMakeFiles/app.dir/src/util.cpp.s
+CMakeFiles/app.dir/src/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/app.dir/src/utils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rflower/Documents/dev/super-game-of-life/src/utils.cpp -o CMakeFiles/app.dir/src/utils.cpp.s
 
 CMakeFiles/app.dir/main.cpp.o: CMakeFiles/app.dir/flags.make
 CMakeFiles/app.dir/main.cpp.o: main.cpp
@@ -104,13 +104,13 @@ CMakeFiles/app.dir/main.cpp.s: cmake_force
 
 # Object files for target app
 app_OBJECTS = \
-"CMakeFiles/app.dir/src/util.cpp.o" \
+"CMakeFiles/app.dir/src/utils.cpp.o" \
 "CMakeFiles/app.dir/main.cpp.o"
 
 # External object files for target app
 app_EXTERNAL_OBJECTS =
 
-app: CMakeFiles/app.dir/src/util.cpp.o
+app: CMakeFiles/app.dir/src/utils.cpp.o
 app: CMakeFiles/app.dir/main.cpp.o
 app: CMakeFiles/app.dir/build.make
 app: CMakeFiles/app.dir/link.txt

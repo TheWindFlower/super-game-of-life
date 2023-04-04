@@ -1,43 +1,84 @@
+#include <vector>
+#include <tuple>
+#include <string>
+#include <fstream>
 #include <iostream>
-#include <thread>
-#include <future>
+#include <ctime>
 
-// Function to be executed on the thread
-void computeResult(int a, int b, std::promise<int> &resultPromise)
+using std::tuple;
+using std::vector;
+
+vector<tuple<int, int, bool, int>> start(std::string filename, int rows, int columns)
 {
-    // Do some computation using the parameters
-    int result = a + b;
+    vector<tuple<int, int, bool, int>> coordinates;
 
-    // Set the result on the promise object
-    resultPromise.set_value(result);
-}
-
-int main()
-{
-    // Create a promise object
-    std::promise<int> resultPromise;
-
-    // Get a future object from the promise
-    std::future<int> resultFuture = resultPromise.get_future();
-
-    // Create a thread and pass the parameters and the promise object to the function
-    std::thread myThread(computeResult, 2, 3, std::ref(resultPromise));
-
-    // Loop 5 times to call the function with different parameters on the existing thread
-    for (int i = 0; i < 5; i++)
+    // Initialize all coordinates to false (0) and not special
+    for (int i = 0; i < rows; i++)
     {
-        // Call the function on the existing thread with different parameters
-        myThread = std::thread(computeResult, i, i + 1, std::ref(resultPromise));
-
-        // Wait for the thread to finish executing
-        myThread.join();
-
-        // Get the result from the future object
-        int result = resultFuture.get();
-
-        // Print the result
-        std::cout << "Result: " << result << std::endl;
+        for (int j = 0; j < columns; j++)
+        {
+            coordinates.push_back(std::make_tuple(i, j, false, 0));
+        }
     }
 
-    return 0;
+    // Open file and set bool to true (1) for specified coordinates and set
+    std::ifstream inputFile(filename);
+    int x, y, kind;
+    while (inputFile >> x >> y >> kind)
+    {
+        std::cout << kind << std::endl;
+        int index = x * columns + y;
+        coordinates[index] = std::make_tuple(x, y, true, kind);
+    }
+    inputFile.close();
+
+    ////debug
+    std::ofstream outputFile("debug");
+    for (const auto &coord : coordinates)
+    {
+        outputFile << std::get<0>(coord) << " " << std::get<1>(coord) << " "
+                   << std::get<2>(coord) << " " << std::get<3>(coord) << "\n";
+    }
+    outputFile.close();
+    ////
+    return coordinates;
+}
+
+void grid_gen(int x, int y)
+{
+    std::srand(time(NULL)); // seed the random number generator
+
+    vector<std::string> end;
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            if ((double)std::rand() / RAND_MAX < 0.5)
+            {
+                if ((double)std::rand() / RAND_MAX < 0.5)
+                {
+                    end.push_back(std::to_string(i) + " " + std::to_string(j) + " " + std::to_string(1));
+                }
+                else
+                {
+                    end.push_back(std::to_string(i) + " " + std::to_string(j) + " " + std::to_string(0));
+                }
+            }
+        }
+    }
+
+    std::ofstream file("data/board.brd");
+    file.clear(); // clear the file
+    for (const std::string &cell : end)
+    {
+        file << cell << std::endl;
+    }
+    file.close();
+}
+int main()
+{
+    int x = 2;
+    int y = 2;
+    grid_gen(x, y);
+    start("data/board.brd", x, y);
 }

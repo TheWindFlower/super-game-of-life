@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/rflower/Documents/dev/super-game-of-life/include/utils.hpp
+vector
+-
+tuple
+-
+string
+-
+
+/home/rflower/Documents/dev/super-game-of-life/src/utils.cpp
+vector
+-
+tuple
+-
+string
+-
+fstream
+-
+iostream
+-
+ctime
+-
+../include/utils.hpp
+/home/rflower/Documents/dev/super-game-of-life/include/utils.hpp
+

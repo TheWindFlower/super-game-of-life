@@ -169,32 +169,32 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/util.o: src/util.cpp.o
+src/utils.o: src/utils.cpp.o
 
-.PHONY : src/util.o
+.PHONY : src/utils.o
 
 # target to build an object file
-src/util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/util.cpp.o
-.PHONY : src/util.cpp.o
+src/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/utils.cpp.o
+.PHONY : src/utils.cpp.o
 
-src/util.i: src/util.cpp.i
+src/utils.i: src/utils.cpp.i
 
-.PHONY : src/util.i
+.PHONY : src/utils.i
 
 # target to preprocess a source file
-src/util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/util.cpp.i
-.PHONY : src/util.cpp.i
+src/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/utils.cpp.i
+.PHONY : src/utils.cpp.i
 
-src/util.s: src/util.cpp.s
+src/utils.s: src/utils.cpp.s
 
-.PHONY : src/util.s
+.PHONY : src/utils.s
 
 # target to generate assembly for a file
-src/util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/util.cpp.s
-.PHONY : src/util.cpp.s
+src/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/app.dir/build.make CMakeFiles/app.dir/src/utils.cpp.s
+.PHONY : src/utils.cpp.s
 
 # Help Target
 help:
@@ -208,9 +208,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/util.o"
-	@echo "... src/util.i"
-	@echo "... src/util.s"
+	@echo "... src/utils.o"
+	@echo "... src/utils.i"
+	@echo "... src/utils.s"
 .PHONY : help
 
 

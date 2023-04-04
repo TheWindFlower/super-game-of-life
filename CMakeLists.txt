@@ -6,7 +6,7 @@ find_package(SDL2 REQUIRED) #Threads SDL2
 find_package(Threads REQUIRED) #Threads lib
     
 #set the source of all the cpp file
-set(SOURCES src/util.cpp main.cpp) 
+set(SOURCES ./src/utils.cpp main.cpp) 
 
 # Set up the executable.
 add_executable(app ${SOURCES})
