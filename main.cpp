@@ -201,10 +201,15 @@ int main(int argc, char *argv[])
     }
     ROWS = SCREEN_HEIGHT / GRID_SIZE;
     COLUMNS = SCREEN_WIDTH / GRID_SIZE;
+    render rd;
     if (gen)
     {
         grid_gen(ROWS, COLUMNS);
-        render rd;
+
+        rd.sdl(delay);
+    }
+    else
+    {
         rd.sdl(delay);
     }
 }

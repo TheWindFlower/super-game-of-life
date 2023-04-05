@@ -44,60 +44,68 @@ std::vector<std::tuple<int, int, bool, int>> next_generation(const vector<tuple<
 
             // Apply Game of Life rules
             bool current_cell_status = std::get<2>(current_status[i * columns + j]);
+            bool super_cells = std::get<3>(current_status[i, j]);
             if (current_cell_status && alive_neighbors < 2)
             {
                 // Underpopulation
-                // check if the celle is a super cells
-                if (std::get<3>(current_status[i, j]))
+                if (super_cells)
                 {
-                    next_status.emplace_back(i, j, true, false);
+                    next_status.emplace_back(i, j, true, false); // loose super state (loose 1hp)
                 }
                 else
                 {
-                    next_status.emplace_back(i, j, false, false);
+                    next_status.emplace_back(i, j, false, false); // die
                 }
             }
             else if (current_cell_status && (alive_neighbors == 2 || alive_neighbors == 3))
             { // Survival
-                if (std::get<3>(current_status[i, j]))
+                if (super_cells)
                 {
-                    next_status.emplace_back(i, j, true, true);
+                    next_status.emplace_back(i, j, true, true); // stay alive
                 }
                 else
                 {
-                    next_status.emplace_back(i, j, true, false);
+                    next_status.emplace_back(i, j, true, false); // stay alive
                 }
             }
             else if (current_cell_status && alive_neighbors > 3)
             { // Overpopulation
-                if (std::get<3>(current_status[i, j]))
+                if (super_cells)
                 {
-                    next_status.emplace_back(i, j, true, false);
+                    next_status.emplace_back(i, j, true, false); // loose super stat(loose 1 hp)
                 }
                 else
                 {
-                    next_status.emplace_back(i, j, false, false);
+                    next_status.emplace_back(i, j, false, false); // die
                 }
             }
             else if (!current_cell_status && alive_neighbors == 3)
             { // Reproduction
+                // not super stat logic, red cells don't reproduce
                 next_status.emplace_back(i, j, true, false);
             }
             else
             { // Stasis
-                if (std::get<3>(current_status[i, j]) && current_cell_status)
+                if (super_cells && current_cell_status)
                 {
-                    next_status.emplace_back(i, j, current_cell_status, true);
+                    next_status.emplace_back(i, j, true, true);
                 }
                 else
                 {
                     next_status.emplace_back(i, j, current_cell_status, false);
                 }
             }
+            // check if cells is dead and has super stat (shoudl'nt happend)
+            if (!current_cell_status && super_cells)
+            {
+                next_status.emplace_back(i, j, false, false);
+                std::cout << "corrupt cells" << std::endl;
+            }
         }
     }
     return (next_status);
 }
+
 vector<tuple<int, int, bool, int>> start(std::string filename, int rows, int columns)
 {
     vector<tuple<int, int, bool, int>> coordinates;
